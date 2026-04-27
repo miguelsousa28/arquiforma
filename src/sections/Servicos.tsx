@@ -17,21 +17,51 @@ const servicos = [
 
 export const Servicos = () => {
   return (
-    <section id="servicos" className="py-20 bg-[var(--color-surface)]">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-serif mb-12 text-center">Serviços</h2>
+    <section id="servicos" style={{ padding: '80px 20px', backgroundColor: '#EAE8E0' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(2rem, 5vw, 2.25rem)',
+            marginBottom: '48px',
+            textAlign: 'center',
+          }}
+        >
+          Serviços
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '32px',
+          }}
+        >
           {servicos.map((servico, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="p-6 bg-[var(--color-bg)] border border-[var(--color-grid)] rounded-lg hover:border-[var(--color-accent)] transition-colors"
+              style={{
+                padding: '24px',
+                backgroundColor: '#F4F2EC',
+                border: '1px solid rgba(154, 142, 114, 0.15)',
+                borderRadius: '8px',
+                transition: 'border-color 300ms',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.borderColor = '#C8A96A';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(154, 142, 114, 0.15)';
+              }}
             >
-              <h3 className="font-serif text-xl mb-4">{servico.titulo}</h3>
-              <p className="text-[var(--color-muted)]">{servico.descricao}</p>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '20px', marginBottom: '16px' }}>
+                {servico.titulo}
+              </h3>
+              <p style={{ color: '#6B6456', margin: 0 }}>{servico.descricao}</p>
             </motion.div>
           ))}
         </div>
