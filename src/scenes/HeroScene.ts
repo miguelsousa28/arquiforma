@@ -36,11 +36,23 @@ export class HeroScene {
     directionalLight.position.set(5, 10, 5);
     this.scene.add(directionalLight);
 
+    // Floor plane (white background)
+    const floorGeometry = new THREE.PlaneGeometry(15, 15);
+    const floorMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      roughness: 0.8,
+      metalness: 0,
+    });
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = 0;
+    this.scene.add(floor);
+
     // Grid helper
-    const gridHelper = new THREE.GridHelper(20, 20);
-    gridHelper.position.set(0, 0, 0);
+    const gridHelper = new THREE.GridHelper(15, 15);
+    gridHelper.position.set(0, 0.01, 0);
     gridHelper.material.color.setHex(0xc8a96a);
-    (gridHelper.material as THREE.Material).opacity = 0.15;
+    (gridHelper.material as THREE.Material).opacity = 0.2;
     (gridHelper.material as THREE.Material).transparent = true;
     this.scene.add(gridHelper);
 
@@ -73,19 +85,19 @@ export class HeroScene {
     const [width, height] = size;
 
     const points = [
-      new THREE.Vector3(x, 0, y),
-      new THREE.Vector3(x + width, 0, y),
-      new THREE.Vector3(x + width, 0, y + height),
-      new THREE.Vector3(x, 0, y + height),
-      new THREE.Vector3(x, 0, y),
+      new THREE.Vector3(x, 0.05, y),
+      new THREE.Vector3(x + width, 0.05, y),
+      new THREE.Vector3(x + width, 0.05, y + height),
+      new THREE.Vector3(x, 0.05, y + height),
+      new THREE.Vector3(x, 0.05, y),
     ];
 
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
     const material = new THREE.LineBasicMaterial({
       color: 0xc8a96a,
-      linewidth: 2,
+      linewidth: 3,
       transparent: true,
-      opacity: 0,
+      opacity: 0.2,
     });
 
     return new THREE.Line(geometry, material);
@@ -94,20 +106,23 @@ export class HeroScene {
   updateProgress(progress: number): void {
     if (!this.floorplan) return;
 
-    const cameraProgress = Math.min(progress * 1.5, 1);
-    const cameraZ = THREE.MathUtils.lerp(12, 3, cameraProgress);
-    const cameraY = THREE.MathUtils.lerp(8, 6, cameraProgress);
+    // Câmera se move conforme scroll
+    const cameraProgress = Math.min(progress * 1.2, 1);
+    const cameraZ = THREE.MathUtils.lerp(12, 4, cameraProgress);
+    const cameraY = THREE.MathUtils.lerp(8, 5, cameraProgress);
 
     this.camera.position.z = cameraZ;
     this.camera.position.y = cameraY;
 
-    const lineOpacity = Math.min(progress * 2, 1);
+    // Opacidade das linhas aumenta conforme scroll
+    const lineOpacity = THREE.MathUtils.lerp(0.3, 1, progress);
 
     this.roomLines.forEach((line) => {
       (line.material as THREE.LineBasicMaterial).opacity = lineOpacity;
     });
 
-    this.floorplan.rotation.y = progress * 0.3;
+    // Rotação suave
+    this.floorplan.rotation.y = progress * 0.4;
   }
 
   private animate = (): void => {
