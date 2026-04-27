@@ -47,7 +47,7 @@ export const Navbar = () => {
 
         {/* Links de Navegação */}
         <div
-          className="hidden md:flex gap-7 items-center"
+          className="hidden md:flex items-center"
           style={{ gap: '28px' }}
         >
           {navLinks.map((link) => (

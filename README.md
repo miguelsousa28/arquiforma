@@ -1,73 +1,86 @@
-# React + TypeScript + Vite
+# Arquiforma Construções
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Premium residential construction company website built with cutting-edge web technologies.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** — Modern React with latest features
+- **Vite** — Lightning-fast build tool with HMR
+- **TypeScript** — Strict mode for type safety
+- **Tailwind CSS v4** — Utility-first styling
+- **Framer Motion** — Smooth, production-ready animations
+- **Three.js** — Pure 3D graphics (no wrappers)
+- **Lenis** — Smooth scrolling experience
 
-## React Compiler
+## 📁 Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/       # Navbar, Footer, reusable UI
+├── sections/         # Hero, Servicos, Portfolio, Contacto
+├── scenes/           # Three.js scenes (HeroScene.ts)
+├── hooks/            # useLenis, useScrollProgress
+├── styles/           # Design tokens, global CSS
+└── assets/           # Images, icons (SVG only)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🎨 Design System
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Colors:**
+- `--color-bg`: #F4F2EC (Warm beige)
+- `--color-accent`: #C8A96A (Gold highlight)
+- `--color-text`: #1C1A14 (Near-black)
+- `--color-muted`: #6B6456 (Secondary text)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Typography:**
+- Serif: Instrument Serif (headlines)
+- Sans: Inter (body text)
+- Mono: IBM Plex Mono (code/data)
+
+## 🚀 Getting Started
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Type Check
+
+```bash
+npx tsc --noEmit
+```
+
+## ✨ Features
+
+- **Glassmorphism Navbar** — Elegant navigation with backdrop blur
+- **Smooth Scrolling** — Lenis smooth scroll implementation
+- **Animated Sections** — Framer Motion entrance animations
+- **3D Scene** — Three.js integration in hero section
+- **Responsive Design** — Mobile-first, 375px–1440px
+- **Accessibility** — WCAG AA compliant, keyboard navigation
+- **Performance** — Code splitting, lazy loading, optimized assets
+
+## 📱 Components
+
+- **Navbar** — Fixed glassmorphic navigation with CTA button
+- **Hero** — Full-height section with 3D scene
+- **Servicos** — Service cards with animations
+- **Portfolio** — Project showcase grid
+- **Contacto** — Contact form section
+- **Footer** — Multi-column footer layout
+
+© 2024 Arquiforma Construções. Built with React 19 + Vite + Tailwind CSS.
 ```
